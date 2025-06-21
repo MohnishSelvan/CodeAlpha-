@@ -1,0 +1,34 @@
+# Basic Rule-Based Chatbot in Python
+
+# This function checks the user input and returns an appropriate response
+def chatbot_response(user_input):
+    # Convert the input to lowercase to make it case-insensitive
+    user_input = user_input.lower()
+
+    # Check the user input and respond accordingly
+    if user_input == "hello":
+        return "Hi!"
+    elif user_input == "how are you":
+        return "I'm fine, thanks!"
+    elif user_input == "bye":
+        return "Goodbye!"
+    else:
+        return "I don't understand that."
+
+# Start of the chatbot program
+print("Chatbot: Hello! You can talk to me. Type 'bye' to end the chat.")
+
+# Keep chatting until the user types "bye"
+while True:
+    # Take input from the user
+    user_input = input("You: ")
+    
+    # Get the chatbot's response
+    response = chatbot_response(user_input)
+
+    # Print the chatbot's response
+    print("Chatbot:", response)
+    
+    # Exit the loop if the user says "bye"
+    if user_input.lower() == "bye":
+        break
