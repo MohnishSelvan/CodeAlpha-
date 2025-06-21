@@ -1,0 +1,50 @@
+# Hardcoded stock prices
+stock_prices = {
+    "AAPL": 180,
+    "TSLA": 250,
+    "GOOGL": 135,
+    "MSFT": 320,
+    "AMZN": 125
+}
+
+# Dictionary to store user portfolio
+portfolio = {}
+
+# Input: Number of stocks to enter
+num_stocks = int(input("How many different stocks do you have? "))
+
+# Taking user input
+for i in range(num_stocks):
+    stock = input(f"Enter stock symbol #{i+1} (e.g., AAPL): ").upper()
+    quantity = int(input(f"Enter quantity of {stock}: "))
+    
+    if stock in stock_prices:
+        portfolio[stock] = quantity
+    else:
+        print(f"{stock} is not in the price list. Skipping...")
+
+# Calculate total investment
+total_investment = 0
+print("\nYour Portfolio:")
+print("---------------------------")
+for stock, quantity in portfolio.items():
+    price = stock_prices[stock]
+    value = price * quantity
+    total_investment += value
+    print(f"{stock}: {quantity} shares x ${price} = ${value}")
+
+print("---------------------------")
+print(f"Total Investment Value: ${total_investment}")
+
+# (Optional) Save to file
+save = input("\nDo you want to save the result to a file? (yes/no): ").lower()
+
+if save == "yes":
+    with open("portfolio.csv", "w") as file:
+        file.write("Stock,Quantity,Price,Value\n")
+        for stock, quantity in portfolio.items():
+            price = stock_prices[stock]
+            value = price * quantity
+            file.write(f"{stock},{quantity},{price},{value}\n")
+        file.write(f",,,\nTotal Investment,,,{total_investment}")
+    print("Portfolio saved to 'portfolio.csv'")
